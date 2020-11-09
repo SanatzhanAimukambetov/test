@@ -21,20 +21,20 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="mainList" id="oV2-dx-9MG" customClass="CustomTableViewCell" customModule="ToDoList" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
+                                        <rect key="frame" x="0.0" y="28" width="414" height="43"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="oV2-dx-9MG" id="KAu-bv-fb6">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NewItem" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bn1-B8-HBj">
-                                                    <rect key="frame" x="20" y="11" width="68" height="21.5"/>
+                                                    <rect key="frame" x="20" y="11" width="68" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DaysLeft" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UxH-4P-VAC">
-                                                    <rect key="frame" x="326.5" y="11" width="67.5" height="21.5"/>
+                                                    <rect key="frame" x="326.5" y="11" width="67.5" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -69,7 +69,7 @@
                     <navigationItem key="navigationItem" id="u2V-Li-HC9">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="HQw-fO-Vhz">
                             <connections>
-                                <segue destination="u8V-bF-Hot" kind="presentation" identifier="newItem" id="pk8-uk-bTO"/>
+                                <action selector="addNewItem:" destination="BYZ-38-t0r" id="rgu-Sr-Zbe"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -84,9 +84,11 @@
         <!--New Item Table View Controller-->
         <scene sceneID="IYX-JQ-nPM">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tzs-fG-LWY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="zfu-dK-Akx" userLabel="Exit" sceneMemberID="exit"/>
                 <tableViewController id="u8V-bF-Hot" customClass="NewItemTableViewController" customModule="ToDoList" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="69z-tp-mTy">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <sections>
@@ -156,7 +158,6 @@
                                             <constraints>
                                                 <constraint firstItem="jRp-C8-peX" firstAttribute="centerY" secondItem="WHe-bB-C0z" secondAttribute="centerY" id="4Mw-pW-uQa"/>
                                                 <constraint firstItem="jRp-C8-peX" firstAttribute="top" secondItem="WHe-bB-C0z" secondAttribute="top" constant="7" id="N2p-SC-CNu"/>
-                                                <constraint firstItem="jRp-C8-peX" firstAttribute="leading" secondItem="WHe-bB-C0z" secondAttribute="leading" constant="354" id="R4W-cS-06n"/>
                                                 <constraint firstAttribute="bottom" secondItem="jRp-C8-peX" secondAttribute="bottom" constant="7" id="bTg-gz-Npl"/>
                                                 <constraint firstAttribute="trailing" secondItem="jRp-C8-peX" secondAttribute="trailing" constant="26" id="imu-ub-cEO"/>
                                             </constraints>
@@ -176,10 +177,8 @@
                         <outlet property="saveButton" destination="jRp-C8-peX" id="5CU-vE-XN5"/>
                     </connections>
                 </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="tzs-fG-LWY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <exit id="zfu-dK-Akx" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1789.8550724637682" y="66.964285714285708"/>
+            <point key="canvasLocation" x="1812" y="67"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="oyZ-8n-K2Z">
