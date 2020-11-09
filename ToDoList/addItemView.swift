@@ -28,6 +28,10 @@ class addItemView: UIView {
     
     private func setupView() {
         
+        button.snp.makeConstraints { (make) in
+            make.topMargin.left.equalTo(20)
+            make.right.bottomMargin.equalTo(20)
+        }
     }
     
 }

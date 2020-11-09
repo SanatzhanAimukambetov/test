@@ -8,7 +8,10 @@
 import UIKit
 
 class CustomTableViewCell: UITableViewCell {
-
+    
+    /*
+    @IBOutlet var iconImage: UIImage!
+    */
     @IBOutlet var newItemLabel: UILabel!
     @IBOutlet var daysLeftLabel: UILabel!
     
