@@ -8,6 +8,7 @@
 import UIKit
 
 class addItemView: UIView {
+    /*
     let button: UIButton = {
         let button = UIButton()
         button.setTitle("Add", for: .highlighted)
@@ -15,6 +16,7 @@ class addItemView: UIView {
         button.setTitleColor(.white, for: .normal)
         return button
     }()
+    */
     
     init() {
         super.init(frame: .zero)
@@ -28,10 +30,12 @@ class addItemView: UIView {
     
     private func setupView() {
         
+        /*
         button.snp.makeConstraints { (make) in
             make.topMargin.left.equalTo(20)
             make.right.bottomMargin.equalTo(20)
         }
+        */
     }
     
 }

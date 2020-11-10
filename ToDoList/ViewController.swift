@@ -10,6 +10,7 @@ import SnapKit
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    lazy var addNewItemView = addItemView()
     var listOfItems = [Item]()
     
     @IBOutlet var tableView: UITableView!
@@ -38,24 +39,19 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         return cell
     }
     
-    @IBAction func unwindSegue(_ segue: UIStoryboardSegue) {
-        
-        guard let newItemVC = segue.source as? NewItemTableViewController else { return }
-        
-        let currentItem = Item(nameItem: newItemVC.itemNameTextField.text, dateItem: newItemVC.datePicker.date)
-        
-        listOfItems.append(currentItem)
-        tableView.reloadData()
-    }
-    
     // MARK: Adding new item (view appearing)
     @IBAction func addNewItem(_ sender: UIBarButtonItem) {
         
-        let addNewItemView = addItemView()
-        
         self.view.addSubview(addNewItemView)
+        
+        addNewItemView.backgroundColor = .black
+        
+        addNewItemView.snp.makeConstraints { (make) in
+            make.leading.trailing.bottom.equalTo(view)
+            make.top.equalTo(view)
+        }
+        
     }
-    
     
     // MARK: Deleting item
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
@@ -66,5 +62,18 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         return UISwipeActionsConfiguration(actions: [deleteAction])
     }
+    
+    
+    /*
+    @IBAction func unwindSegue(_ segue: UIStoryboardSegue) {
+        
+        guard let newItemVC = segue.source as? NewItemTableViewController else { return }
+        
+        let currentItem = Item(nameItem: newItemVC.itemNameTextField.text, dateItem: newItemVC.datePicker.date)
+        
+        listOfItems.append(currentItem)
+        tableView.reloadData()
+    }
+    */
 }
 
