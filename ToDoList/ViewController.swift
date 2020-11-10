@@ -45,10 +45,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         self.view.addSubview(addNewItemView)
         
         addNewItemView.backgroundColor = .black
-        
+        let halfOfView = view.bounds.size.height / 2
         addNewItemView.snp.makeConstraints { (make) in
             make.leading.trailing.bottom.equalTo(view)
-            make.top.equalTo(view)
+            make.top.equalTo(halfOfView)
         }
         
     }
