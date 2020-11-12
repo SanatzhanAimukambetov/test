@@ -66,13 +66,15 @@ class addItemView: UIView {
     
     @objc private func close() {
         
-        onClose?()
+        removeFromSuperview()
     }
     
     @objc private func add() {
         
         let item = Item(nameItem: textField.text, dateItem: datePicker.date)
         onAdd?(item)
+        removeFromSuperview()
+        
     }
     
     private func setupViews() {

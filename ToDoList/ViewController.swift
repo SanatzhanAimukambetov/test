@@ -20,7 +20,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
         tableView.dataSource = self
         tableView.delegate = self
-        
+                
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -49,19 +49,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             make.leading.trailing.bottom.equalTo(view)
             make.height.equalTo(view.snp.height).dividedBy(2)
         }
-        addNewItemView.onClose = {
-            
-            self.addNewItemView.removeFromSuperview()
-            
-        }
         
         addNewItemView.onAdd = { item in
             
-            self.addNewItemView.removeFromSuperview()
             self.listOfItems.append(item)
             self.tableView.reloadData()
             
         }
+        
         /*
         addNewItemView.cancelButton.addTarget(self, action: #selector(closeView), for: .touchUpInside)
         addNewItemView.isHidden = false
