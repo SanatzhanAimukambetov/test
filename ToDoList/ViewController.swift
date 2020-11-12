@@ -44,14 +44,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         self.view.addSubview(addNewItemView)
         
-        addNewItemView.backgroundColor = .black
-        let halfOfView = view.bounds.size.height / 2
+        addNewItemView.backgroundColor = .orange
         addNewItemView.snp.makeConstraints { (make) in
             make.leading.trailing.bottom.equalTo(view)
-            make.top.equalTo(halfOfView)
+            make.height.equalTo(view.snp.height).dividedBy(2)
         }
         
     }
+    
+    
     
     // MARK: Deleting item
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
