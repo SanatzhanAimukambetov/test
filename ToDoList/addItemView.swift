@@ -8,6 +8,9 @@
 import UIKit
 
 class addItemView: UIView {
+    // Closures
+    var onClose: (() -> ())?
+    var onAdd: ((_ item: Item) -> ())?
     
     let cancelButton: UIButton = {
         let button = UIButton()
@@ -15,6 +18,7 @@ class addItemView: UIView {
         button.setTitleColor(.black, for: .normal)
         button.backgroundColor = .white
         button.layer.cornerRadius = 15
+        button.addTarget(self, action: #selector(close), for: .touchUpInside)
         return button
     }()
     
@@ -24,6 +28,7 @@ class addItemView: UIView {
         button.setTitleColor(.black, for: .normal)
         button.backgroundColor = .white
         button.layer.cornerRadius = 15
+        button.addTarget(self, action: #selector(add), for: .touchUpInside)
         return button
     }()
     
@@ -46,8 +51,6 @@ class addItemView: UIView {
         carousel.backgroundColor = .white
         return carousel
     }()
-        
-    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -61,6 +64,16 @@ class addItemView: UIView {
         setupConstraints()
     }
     
+    @objc private func close() {
+        
+        onClose?()
+    }
+    
+    @objc private func add() {
+        
+        let item = Item(nameItem: textField.text, dateItem: datePicker.date)
+        onAdd?(item)
+    }
     
     private func setupViews() {
         
