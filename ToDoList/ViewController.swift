@@ -53,23 +53,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         addNewItemView.onAdd = { item in
             
             self.listOfItems.append(item)
-            self.tableView.reloadData()
+            
+            // Reload data
+            self.tableView.insertRows(at: [IndexPath.init(row: self.listOfItems.count-1, section: 0)], with: .automatic)
             
         }
-        
-        /*
-        addNewItemView.cancelButton.addTarget(self, action: #selector(closeView), for: .touchUpInside)
-        addNewItemView.isHidden = false
-        */
-        
+
     }
-    
-    /*
-    @objc func closeView() {
-        addNewItemView.isHidden = true
-    }
-    */
-    
+     
     // MARK: Deleting item
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         _ = listOfItems[indexPath.row]
@@ -80,17 +71,5 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         return UISwipeActionsConfiguration(actions: [deleteAction])
     }
     
-    
-    /*
-    @IBAction func unwindSegue(_ segue: UIStoryboardSegue) {
-        
-        guard let newItemVC = segue.source as? NewItemTableViewController else { return }
-        
-        let currentItem = Item(nameItem: newItemVC.itemNameTextField.text, dateItem: newItemVC.datePicker.date)
-        
-        listOfItems.append(currentItem)
-        tableView.reloadData()
-    }
-    */
 }
 
