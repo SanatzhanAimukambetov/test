@@ -66,7 +66,7 @@ class addItemView: UIView {
     
     @objc private func close() {
         
-        removeFromSuperview()
+        animHide()
     }
     
     @objc private func add() {
@@ -120,6 +120,28 @@ class addItemView: UIView {
             make.height.equalTo(100)
         }
     
+    }
+    
+}
+
+extension UIView {
+    
+    func animShow() {
+        UIView.animateKeyframes(withDuration: 0.3, delay: 0.1, options: [.allowUserInteraction], animations: {
+            self.center.y -= self.bounds.height
+            self.layoutIfNeeded()
+        }, completion: nil)
+        self.isHidden = false
+    }
+    
+    func animHide(){
+        UIView.animateKeyframes(withDuration: 0.3, delay: 0.1, options: [.overrideInheritedOptions], animations: {
+            self.center.y += self.bounds.height
+            self.layoutIfNeeded()
+        }, completion: {(_ completed: Bool) -> Void in
+            self.isHidden = true
+            }
+        )
     }
     
 }

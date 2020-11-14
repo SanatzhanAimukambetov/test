@@ -20,7 +20,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
         tableView.dataSource = self
         tableView.delegate = self
-                
+        
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -42,6 +42,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     // MARK: Adding new item (view appearing)
     @IBAction func addNewItem(_ sender: UIBarButtonItem) {
         
+        addNewItemView.animShow()
         self.view.addSubview(addNewItemView)
         
         addNewItemView.backgroundColor = .orange
