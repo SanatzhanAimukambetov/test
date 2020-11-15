@@ -67,13 +67,14 @@ class addItemView: UIView {
     @objc private func close() {
         
         animHide()
+        
     }
     
     @objc private func add() {
         
         let item = Item(nameItem: textField.text, dateItem: datePicker.date)
         onAdd?(item)
-        removeFromSuperview()
+        animHide()
         
     }
     
@@ -127,7 +128,7 @@ class addItemView: UIView {
 extension UIView {
     
     func animShow() {
-        UIView.animateKeyframes(withDuration: 0.3, delay: 0.1, options: [.allowUserInteraction], animations: {
+        UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: [.curveEaseIn, .beginFromCurrentState], animations: {
             self.center.y -= self.bounds.height
             self.layoutIfNeeded()
         }, completion: nil)
@@ -135,7 +136,7 @@ extension UIView {
     }
     
     func animHide(){
-        UIView.animateKeyframes(withDuration: 0.3, delay: 0.1, options: [.overrideInheritedOptions], animations: {
+        UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: [.curveEaseIn, .beginFromCurrentState], animations: {
             self.center.y += self.bounds.height
             self.layoutIfNeeded()
         }, completion: {(_ completed: Bool) -> Void in
