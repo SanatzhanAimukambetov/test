@@ -29,6 +29,8 @@ class addItemView: UIView {
         button.backgroundColor = .white
         button.layer.cornerRadius = 15
         button.addTarget(self, action: #selector(add), for: .touchUpInside)
+        button.isEnabled = false
+        button.setTitleColor(.gray, for: .disabled)
         return button
     }()
     
@@ -36,6 +38,7 @@ class addItemView: UIView {
         let textField = UITextField()
         textField.backgroundColor = .white
         textField.font = .systemFont(ofSize: 24)
+        textField.returnKeyType = UIReturnKeyType.done
         return textField
     }()
     
@@ -66,7 +69,7 @@ class addItemView: UIView {
     
     @objc private func close() {
         
-        animHide()
+        hide()
         
     }
     
@@ -74,8 +77,25 @@ class addItemView: UIView {
         
         let item = Item(nameItem: textField.text, dateItem: datePicker.date)
         onAdd?(item)
-        animHide()
+        hide()
         
+    }
+    
+    private func hide() {
+        textField.text = ""
+        textField.endEditing(true)
+        snp.removeConstraints()
+        guard let superView = superview else { return }
+        snp.makeConstraints {
+            $0.leading.trailing.equalToSuperview()
+            $0.height.equalTo(superView.snp.height).dividedBy(2)
+            $0.top.equalTo(superView.snp.bottom)
+        }
+        UIView.animate(withDuration: 0.3) {
+            superView.layoutIfNeeded()
+        } completion: { (completed) in
+            if completed { self.isHidden = true }
+        }
     }
     
     private func setupViews() {
@@ -85,6 +105,7 @@ class addItemView: UIView {
         addSubview(textField)
         addSubview(datePicker)
         addSubview(carousel)
+        textField.delegate = self
     }
     private func setupConstraints() {
         
@@ -104,45 +125,36 @@ class addItemView: UIView {
         
         textField.snp.makeConstraints { (make) in
             make.leading.trailing.equalToSuperview().inset(10)
-            make.top.equalTo(45)
+            make.height.equalTo(30)
+            make.top.equalTo(addButton.snp.bottom).offset(10)
         }
         
         datePicker.snp.makeConstraints { (make) in
-            make.top.equalTo(85)
+            make.top.equalTo(textField.snp.bottom).offset(10)
             make.leading.equalTo(10)
             make.trailing.equalTo(-10)
-            make.height.equalTo(200)
         }
 
         carousel.snp.makeConstraints { (make) in
-            make.top.equalTo(295)
+            make.top.equalTo(datePicker.snp.bottom).offset(10)
+            make.height.equalTo(40)
             make.leading.equalTo(10)
             make.trailing.equalTo(-10)
-            make.height.equalTo(100)
+            make.bottom.equalToSuperview().inset(10)
         }
     
     }
     
 }
 
-extension UIView {
+extension addItemView: UITextFieldDelegate {
     
-    func animShow() {
-        UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: [.curveEaseIn, .beginFromCurrentState], animations: {
-            self.center.y -= self.bounds.height
-            self.layoutIfNeeded()
-        }, completion: nil)
-        self.isHidden = false
+    func textFieldDidChangeSelection(_ textField: UITextField) {
+        addButton.isEnabled = textField.text?.isEmpty == false ? true : false
     }
     
-    func animHide(){
-        UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: [.curveEaseIn, .beginFromCurrentState], animations: {
-            self.center.y += self.bounds.height
-            self.layoutIfNeeded()
-        }, completion: {(_ completed: Bool) -> Void in
-            self.isHidden = true
-            }
-        )
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
-    
 }
