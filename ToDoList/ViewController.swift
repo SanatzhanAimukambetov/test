@@ -43,14 +43,6 @@ class ViewController: UIViewController {
             self.listOfItems.append(item)
             self.tableView.reloadData()
         }
-        
-        /*
-        let blurEffect = UIBlurEffect(style: UIBlurEffect.Style.dark)
-        let blurEffectView = UIVisualEffectView(effect: blurEffect)
-        blurEffectView.frame = view.bounds
-        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        view.addSubview(blurEffectView)
-        */
     }
     
     private func show() {
@@ -139,5 +131,14 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         return listOfItems.count
     }
     
+}
+
+extension Date {
+    func daysFromNowToString() -> String? {
+        let formatter = DateComponentsFormatter()
+        formatter.unitsStyle = .full
+        formatter.allowedUnits = [.month, . day, .hour]
+        return formatter.string(from: Date(), to: self)
+    }
 }
 
