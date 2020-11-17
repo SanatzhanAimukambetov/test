@@ -107,6 +107,7 @@ class addItemView: UIView {
         addSubview(carousel)
         textField.delegate = self
     }
+    
     private func setupConstraints() {
         
         cancelButton.snp.makeConstraints { (make) in
