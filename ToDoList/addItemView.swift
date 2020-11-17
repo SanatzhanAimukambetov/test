@@ -81,7 +81,6 @@ class addItemView: UIView {
         
     }
     
-    
     private func hide() {
         textField.text = ""
         textField.endEditing(true)

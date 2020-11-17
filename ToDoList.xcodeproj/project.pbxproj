@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		89DE417E256433F20009C183 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 89DE417D256433F20009C183 /* SnapKit */; };
 		DCF0290C43712D04A34E1494 /* Pods_ToDoList.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31651B15B4D6C66783DF589F /* Pods_ToDoList.framework */; };
 		E79D331B255521F1002DB7C0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E79D331A255521F1002DB7C0 /* AppDelegate.swift */; };
 		E79D331D255521F1002DB7C0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E79D331C255521F1002DB7C0 /* SceneDelegate.swift */; };
@@ -42,6 +43,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DCF0290C43712D04A34E1494 /* Pods_ToDoList.framework in Frameworks */,
+				89DE417E256433F20009C183 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -118,6 +120,9 @@
 			dependencies = (
 			);
 			name = ToDoList;
+			packageProductDependencies = (
+				89DE417D256433F20009C183 /* SnapKit */,
+			);
 			productName = ToDoList;
 			productReference = E79D3317255521F1002DB7C0 /* ToDoList.app */;
 			productType = "com.apple.product-type.application";
@@ -145,6 +150,9 @@
 				Base,
 			);
 			mainGroup = E79D330E255521F1002DB7C0;
+			packageReferences = (
+				89DE417C256433F20009C183 /* XCRemoteSwiftPackageReference "SnapKit" */,
+			);
 			productRefGroup = E79D3318255521F1002DB7C0 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -423,6 +431,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		89DE417C256433F20009C183 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		89DE417D256433F20009C183 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 89DE417C256433F20009C183 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = E79D330F255521F1002DB7C0 /* Project object */;
 }
