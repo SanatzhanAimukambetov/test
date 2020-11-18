@@ -20,7 +20,7 @@ class ViewController: UIViewController {
 
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.backgroundColor = .gray
+        tableView.backgroundColor = UIColor(red: 0.247, green: 0.5686, blue: 0.2941, alpha: 1)
     
         self.view.addSubview(addNewItemView)
         setupConstraints()
@@ -63,6 +63,7 @@ class ViewController: UIViewController {
     // sorting by names and deadlines
     // limitation = 10 cells, limitation for textfield
     
+    // MARK: Keyboard
     @objc func keyboardWillShow(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
             if self.view.frame.origin.y == 0 {
@@ -90,6 +91,7 @@ class ViewController: UIViewController {
         view.addGestureRecognizer(tap)
     }
     
+    // MARK: Constraints
     private func setupConstraints() {
         
         addNewItemView.backgroundColor = .black
