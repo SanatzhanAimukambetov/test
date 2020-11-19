@@ -2,7 +2,7 @@
 //  ItemModel.swift
 //  ToDoList
 //
-//  Created by Kairat Zukhra on 06.11.2020.
+//  Created by Chemdev on 06.11.2020.
 //
 
 import UIKit
