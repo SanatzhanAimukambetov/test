@@ -21,6 +21,7 @@ struct IconModel {
 //        let eight = IconModel(image: "icon8")
 //        let nine = IconModel(image: "icon9")
 //        let ten = IconModel(image: "icon10")
+        return [firstItem, secondItem, thirdItem]
 //
 //        return [firstItem, secondItem, thirdItem, fouthItem, five, six, seven, eight, nine, ten]
     }

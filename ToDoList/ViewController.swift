@@ -14,7 +14,6 @@ class ViewController: UIViewController {
     
     let container: UIView = {
         let container = UIView()
-//        container.backgroundColor = .white
         container.backgroundColor = UIColor(white: 0, alpha: 0)
         return container
     }()
@@ -22,29 +21,18 @@ class ViewController: UIViewController {
     let addButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(named: "addButton"), for: .normal)
-        button.addTarget(self, action: #selector(kostrulya), for: .touchUpInside)
-//        button.addTarget(self, action: #selector(showView), for: .touchDown)
-//        button.addTarget(self, action: #selector(hideView), for: .touchUpInside)
+        button.addTarget(self, action: #selector(showOrHide), for: .touchUpInside)
         return button
     }()
     
-    let newView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .white
-        view.layer.cornerRadius = 20
-        view.layer.shadowRadius = 100
-        return view
-    }()
+    let newView = NewView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         view.backgroundColor = UIColor(red: 0.247, green: 0.5686, blue: 0.2941, alpha: 1)
         
-        self.view.addSubview(container)
-        self.container.addSubview(addButton)
-        self.container.addSubview(newView)
-        newView.isHidden = true
+        setupViews()
         setupConstraints()
     }
     
@@ -69,7 +57,20 @@ class ViewController: UIViewController {
         }
     }
     
-    @objc private func kostrulya() {
+    private func setupViews() {
+        
+        self.view.addSubview(container)
+        self.container.addSubview(addButton)
+        self.container.addSubview(newView)
+        
+        newView.isHidden = true
+        newView.backgroundColor = .white
+        newView.layer.cornerRadius = 20
+        newView.layer.shadowRadius = 100
+          
+    }
+    
+    @objc private func showOrHide() {
         if buttonIsShow {
             showView()
         } else {
