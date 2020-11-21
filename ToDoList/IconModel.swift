@@ -27,9 +27,9 @@ struct IconModel {
     }
 }
 
-//struct Constants {
-//    static let leftDistanceToView: CGFloat = 40
-//    static let rightDistanceToView: CGFloat = 40
-//    static let galleryMinimumLineSpacing: CGFloat = 10
+struct Constants {
+    static let leftDistanceToView: CGFloat = 0
+    static let rightDistanceToView: CGFloat = 0
+    static let galleryMinimumLineSpacing: CGFloat = 10
 //    static let galleryItemWidth = (UIScreen.main.bounds.width - Constants.leftDistanceToView - Constants.rightDistanceToView - (Constants.galleryMinimumLineSpacing / 2)) / 2
-//}
+}

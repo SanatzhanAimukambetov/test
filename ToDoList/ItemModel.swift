@@ -9,5 +9,5 @@ import UIKit
 
 struct Item {
     var nameItem: String?
-    var dateItem: Date?
+    var imageItem: UIImage
 }

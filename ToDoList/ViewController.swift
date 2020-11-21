@@ -4,6 +4,13 @@
 //
 //  Created by Chemdev on 06.11.2020.
 //
+// realm
+// carousel
+// design
+// radiusCorner
+// opacity of view
+// sorting by names and deadlines
+// limitation = 10 cells, limitation for textfield
 
 import UIKit
 import SnapKit
@@ -34,6 +41,7 @@ class ViewController: UIViewController {
         
         setupViews()
         setupConstraints()
+        keyboardActions()
     }
     
     private func setupConstraints() {
@@ -50,7 +58,6 @@ class ViewController: UIViewController {
         }
         
         newView.snp.makeConstraints { (make) in
-            make.height.equalTo(view.snp.height).dividedBy(3)
             make.width.equalToSuperview()
             make.bottom.equalToSuperview()
             make.top.equalTo(addButton.snp.bottom).offset(30)
@@ -81,21 +88,50 @@ class ViewController: UIViewController {
     
     private func showView() {
         self.newView.isHidden = false
-        UIView.animate(withDuration: 0.7, animations: {
-//            self.view.layoutIfNeeded()
+        UIView.animate(withDuration: 0.5, animations: {
+            self.view.layoutIfNeeded()
             self.container.transform = CGAffineTransform(translationX: 0, y: -self.newView.bounds.height)
             self.addButton.transform = CGAffineTransform(rotationAngle: CGFloat.pi/4)
         })
     }
     
     private func hideView() {
-        UIView.animate(withDuration: 0.7, animations: {
+        UIView.animate(withDuration: 0.5, animations: {
             self.container.transform = .identity
             self.addButton.transform = .identity
         }, completion: { (completed) in
             if completed { self.newView.isHidden = true }
         })
     }
+    
+    // MARK: Keyboard actions
+    @objc func keyboardWillShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            if self.view.frame.origin.y == 0 {
+                self.view.frame.origin.y -= keyboardSize.height
+            }
+        }
+    }
+    
+    @objc func keyboardWillHide(notification: NSNotification) {
+            if self.view.frame.origin.y != 0 {
+                self.view.frame.origin.y = 0
+            }
+        }
+    
+    private func keyboardActions() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+//
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
+
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func dismissKeyboard() {
+           view.endEditing(true)
+       }
+    
 }
 
     
@@ -109,56 +145,9 @@ class ViewController: UIViewController {
 //        }
 //    }
     
-//    private func show() {
-//        addNewItemView.snp.removeConstraints()
-//        addNewItemView.snp.makeConstraints {
-//            $0.leading.trailing.equalToSuperview()
-//            $0.bottom.equalTo(view.snp.bottom)
-//            /*
-//            $0.height.equalTo(view.snp.height).dividedBy(2)
-//            */
-//        }
-//        self.addNewItemView.isHidden = false
-//        UIView.animate(withDuration: 0.3) {
-//            self.view.layoutIfNeeded()
-//        }
-//    }
+//
+//
     
-    // realm
-    // carousel
-    // design
-    // radiusCorner
-    // opacity of view
-    // sorting by names and deadlines
-    // limitation = 10 cells, limitation for textfield
-    
-    // MARK: Keyboard
-//    @objc func keyboardWillShow(notification: NSNotification) {
-//        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-//            if self.view.frame.origin.y == 0 {
-//                self.view.frame.origin.y -= keyboardSize.height
-//            }
-//        }
-//    }
-//
-//    @objc func keyboardWillHide(notification: NSNotification) {
-//        if self.view.frame.origin.y != 0 {
-//            self.view.frame.origin.y = 0
-//        }
-//    }
-//
-//    @objc func dismissKeyboard() {
-//        view.endEditing(true)
-//    }
-//
-//    private func keyboardActions() {
-//        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-//        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
-//
-//        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
-//
-//        view.addGestureRecognizer(tap)
-//    }
      
 //    // MARK: Deleting item
 //    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {

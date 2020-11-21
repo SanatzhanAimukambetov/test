@@ -12,6 +12,8 @@
 		89F65B172567E90F001C3250 /* NewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F65B162567E90F001C3250 /* NewView.swift */; };
 		89F65B1D2567EB67001C3250 /* IconModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F65B1C2567EB67001C3250 /* IconModel.swift */; };
 		89F65B212568383F001C3250 /* GalleryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F65B202568383F001C3250 /* GalleryCollectionViewCell.swift */; };
+		89F65B2625694BE0001C3250 /* MainTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F65B2525694BDF001C3250 /* MainTableView.swift */; };
+		89F65B2A25694C62001C3250 /* MainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F65B2925694C62001C3250 /* MainTableViewCell.swift */; };
 		DCF0290C43712D04A34E1494 /* Pods_ToDoList.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31651B15B4D6C66783DF589F /* Pods_ToDoList.framework */; };
 		E79D331B255521F1002DB7C0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E79D331A255521F1002DB7C0 /* AppDelegate.swift */; };
 		E79D331F255521F1002DB7C0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E79D331E255521F1002DB7C0 /* ViewController.swift */; };
@@ -27,6 +29,8 @@
 		89F65B162567E90F001C3250 /* NewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewView.swift; sourceTree = "<group>"; };
 		89F65B1C2567EB67001C3250 /* IconModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconModel.swift; sourceTree = "<group>"; };
 		89F65B202568383F001C3250 /* GalleryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryCollectionViewCell.swift; sourceTree = "<group>"; };
+		89F65B2525694BDF001C3250 /* MainTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableView.swift; sourceTree = "<group>"; };
+		89F65B2925694C62001C3250 /* MainTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewCell.swift; sourceTree = "<group>"; };
 		D69ABF3115EADA2AAF794969 /* Pods-ToDoList.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ToDoList.release.xcconfig"; path = "Target Support Files/Pods-ToDoList/Pods-ToDoList.release.xcconfig"; sourceTree = "<group>"; };
 		E79D3317255521F1002DB7C0 /* ToDoList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToDoList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E79D331A255521F1002DB7C0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -90,6 +94,8 @@
 			children = (
 				E79D331A255521F1002DB7C0 /* AppDelegate.swift */,
 				E79D331E255521F1002DB7C0 /* ViewController.swift */,
+				89F65B2525694BDF001C3250 /* MainTableView.swift */,
+				89F65B2925694C62001C3250 /* MainTableViewCell.swift */,
 				89F65B132567E5AA001C3250 /* GalleryCollectionView.swift */,
 				89F65B202568383F001C3250 /* GalleryCollectionViewCell.swift */,
 				89F65B162567E90F001C3250 /* NewView.swift */,
@@ -222,11 +228,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				E79D3333255525B7002DB7C0 /* ItemModel.swift in Sources */,
+				89F65B2A25694C62001C3250 /* MainTableViewCell.swift in Sources */,
 				89F65B1D2567EB67001C3250 /* IconModel.swift in Sources */,
 				89F65B142567E5AA001C3250 /* GalleryCollectionView.swift in Sources */,
 				E79D331F255521F1002DB7C0 /* ViewController.swift in Sources */,
 				89F65B172567E90F001C3250 /* NewView.swift in Sources */,
 				89F65B212568383F001C3250 /* GalleryCollectionViewCell.swift in Sources */,
+				89F65B2625694BE0001C3250 /* MainTableView.swift in Sources */,
 				E79D331B255521F1002DB7C0 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

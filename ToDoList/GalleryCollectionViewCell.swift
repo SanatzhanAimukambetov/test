@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class GalleryCollectionViewCell: UICollectionViewCell {
     
@@ -13,7 +14,7 @@ class GalleryCollectionViewCell: UICollectionViewCell {
     
     let mainImageView: UIImageView = {
        let imageView = UIImageView()
-        imageView.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        imageView.backgroundColor = #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)
         return imageView
     }()
     
@@ -22,7 +23,9 @@ class GalleryCollectionViewCell: UICollectionViewCell {
         
         addSubview(mainImageView)
         
-        
+        mainImageView.snp.makeConstraints { (make) in
+            make.leading.trailing.top.bottom.equalToSuperview()
+        }
     }
     
     required init?(coder: NSCoder) {
