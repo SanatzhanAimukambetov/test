@@ -8,8 +8,8 @@
 import UIKit
 
 class MainTableView: UITableView {
+    var items = [Item]()
     
-    var 
     /*
     // Only override draw() if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.
@@ -20,12 +20,12 @@ class MainTableView: UITableView {
 
 }
 
-extension MainTableView: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = dequeueReusableCell(withIdentifier: )
-    }
-}
+//extension MainTableView: UITableViewDelegate, UITableViewDataSource {
+//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        return
+//    }
+//
+//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        let cell = dequeueReusableCell(withIdentifier: )
+//    }
+//}
