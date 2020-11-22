@@ -18,6 +18,7 @@ import SnapKit
 class ViewController: UIViewController {
     
     var buttonIsShow: Bool = true
+    var listOfItems = [Item]()
     
     let container: UIView = {
         let container = UIView()

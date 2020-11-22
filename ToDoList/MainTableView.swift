@@ -7,8 +7,33 @@
 
 import UIKit
 
-class MainTableView: UITableView {
-    var items = [Item]()
+class MainTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
+    
+    var listOfItems = [Item]()
+    
+    init() {
+        
+        register(MainTableViewCell.self, forCellWithReuseIdentifier: MainTableViewCell.reuseId)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return listOfItems.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "mainList", for: indexPath) as! MainTableViewCell
+        
+        let item = listOfItems[indexPath.row]
+        
+        return cell
+    }
+    
+    
+    
     
     /*
     // Only override draw() if you perform custom drawing.
