@@ -11,12 +11,12 @@ class MainTableViewCell: UITableViewCell {
     
     static let reuseId = "MainTableViewCell"
     
-    let image: UIImage!
-    let itemLabel: UILabel!
+    let itemImage = UIImageView()
+    let itemLabel = UILabel()
     
-    
-
+    override class func awakeFromNib() {
+        super.awakeFromNib()
         
-    
-
+        
+    }
 }

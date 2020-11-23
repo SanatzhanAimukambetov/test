@@ -11,15 +11,6 @@ class MainTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
     
     var listOfItems = [Item]()
     
-    init() {
-        
-        register(MainTableViewCell.self, forCellWithReuseIdentifier: MainTableViewCell.reuseId)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return listOfItems.count
     }
