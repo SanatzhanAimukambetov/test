@@ -30,22 +30,37 @@ class ViewController: UIViewController {
         let button = UIButton()
         button.setImage(UIImage(named: "addButton"), for: .normal)
         button.addTarget(self, action: #selector(showOrHide), for: .touchUpInside)
+        button.addTarget(self, action: #selector(addNewItem), for: .touchUpInside)
         return button
     }()
     
+    let mainTableView = MainTableView()
     let newView = NewView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        view.backgroundColor = UIColor(red: 0.247, green: 0.5686, blue: 0.2941, alpha: 1)
         
         setupViews()
         setupConstraints()
         keyboardActions()
     }
     
+    @objc private func addNewItem() {
+        newView.onAdd = { item in
+            
+            self.hideView()
+            self.listOfItems.append(item)
+            self.mainTableView.reloadData()
+            
+        }
+        
+    }
+    
     private func setupConstraints() {
+        
+        mainTableView.snp.makeConstraints { (make) in
+            make.leading.trailing.top.bottom.equalToSuperview()
+        }
         
         container.snp.makeConstraints { (make) in
             make.leading.trailing.equalToSuperview()
@@ -67,6 +82,7 @@ class ViewController: UIViewController {
     
     private func setupViews() {
         
+        self.view.addSubview(mainTableView)
         self.view.addSubview(container)
         self.container.addSubview(addButton)
         self.container.addSubview(newView)
@@ -75,6 +91,8 @@ class ViewController: UIViewController {
         newView.backgroundColor = .white
         newView.layer.cornerRadius = 20
         newView.layer.shadowRadius = 100
+        
+        mainTableView.backgroundColor = UIColor(red: 0.247, green: 0.5686, blue: 0.2941, alpha: 1)
           
     }
     

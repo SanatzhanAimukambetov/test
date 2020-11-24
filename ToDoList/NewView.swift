@@ -9,6 +9,9 @@ import UIKit
 import SnapKit
 
 class NewView: UIView {
+    // MARK: Closures
+    var onClose: (() -> ())?
+    var onAdd: ((_ item: Item) -> ())?
     
     let bottomLine: UIView = {
         let bottomLine = UIView()
@@ -39,6 +42,7 @@ class NewView: UIView {
         addButton.layer.shadowRadius = 1
         addButton.layer.masksToBounds = false
         addButton.layer.cornerRadius = 15
+        addButton.addTarget(self, action: #selector(add), for: .touchUpInside)
         return addButton
     }()
     
@@ -53,6 +57,12 @@ class NewView: UIView {
         super.init(coder: coder)
         setupViews()
         setupConstraints()
+    }
+    
+    @objc private func add() {
+        
+        let item = Item(nameItem: textField.text, imageItem: #imageLiteral(resourceName: "icon4"))
+        onAdd?(item)
     }
     
     private func setupViews() {

@@ -11,14 +11,32 @@ class MainTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
     
     var listOfItems = [Item]()
     
+    override init(frame: CGRect, style: UITableView.Style) {
+        super.init(frame: frame, style: style)
+        
+        dataSource = self
+        delegate = self
+        
+        register(MainTableViewCell.self, forCellReuseIdentifier: MainTableViewCell.reuseId)
+        
+        
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return listOfItems.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "mainList", for: indexPath) as! MainTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: MainTableViewCell.reuseId, for: indexPath) as! MainTableViewCell
         
         let item = listOfItems[indexPath.row]
+        
+        cell.itemLabel.text = item.nameItem
+        cell.itemImage.image = item.imageItem
         
         return cell
     }

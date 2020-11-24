@@ -22,6 +22,7 @@ class GalleryCollectionViewCell: UICollectionViewCell {
         super.init(frame: frame)
         
         addSubview(mainImageView)
+        self.contentView.isUserInteractionEnabled = true
         
         mainImageView.snp.makeConstraints { (make) in
             make.leading.trailing.top.bottom.equalToSuperview()
