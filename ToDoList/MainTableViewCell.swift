@@ -12,21 +12,28 @@ class MainTableViewCell: UITableViewCell {
     
     static let reuseId = "MainTableViewCell"
     
-    let itemImage = UIImageView()
+    let itemImage: UIImageView = {
+        let image = UIImageView()
+        return image
+    }()
+    
     let itemLabel: UILabel = {
         let itemLabel = UILabel()
         itemLabel.text = "Another One"
         return itemLabel
     }()
     
-    override class func awakeFromNib() {
-        super.awakeFromNib()
-
-    }
+//    override class func awakeFromNib() {
+//        super.awakeFromNib()
+//
+//    }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: "MainTableViewCell")
         
+        backgroundColor = .white
+        addSubview(itemImage)
+        addSubview(itemLabel)
         setupConstraints()
     }
     

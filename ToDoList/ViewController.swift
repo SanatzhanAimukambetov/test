@@ -49,7 +49,7 @@ class ViewController: UIViewController {
         newView.onAdd = { item in
             
             self.hideView()
-            self.listOfItems.append(item)
+            self.mainTableView.listOfItems.append(item)
             self.mainTableView.reloadData()
             
         }
@@ -89,7 +89,6 @@ class ViewController: UIViewController {
         
         newView.isHidden = true
         newView.backgroundColor = .white
-        newView.layer.cornerRadius = 20
         newView.layer.shadowRadius = 100
         
         mainTableView.backgroundColor = UIColor(red: 0.247, green: 0.5686, blue: 0.2941, alpha: 1)
