@@ -19,7 +19,6 @@ class MainTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
         
         register(MainTableViewCell.self, forCellReuseIdentifier: MainTableViewCell.reuseId)
         
-        
     }
     
     required init?(coder: NSCoder) {
@@ -40,6 +39,15 @@ class MainTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
         
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+            _ = listOfItems[indexPath.row]
+            let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { (_, _, _) in self.listOfItems.remove(at: indexPath.row)
+                tableView.deleteRows(at: [indexPath], with: .automatic)
+            }
+    
+            return UISwipeActionsConfiguration(actions: [deleteAction])
+        }
     
     
     

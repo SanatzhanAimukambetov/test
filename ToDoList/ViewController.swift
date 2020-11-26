@@ -18,7 +18,6 @@ import SnapKit
 class ViewController: UIViewController {
     
     var buttonIsShow: Bool = true
-    var listOfItems = [Item]()
     
     let container: UIView = {
         let container = UIView()
@@ -151,47 +150,13 @@ class ViewController: UIViewController {
        }
     
 }
-
-    
-    // MARK: Adding new item (view appearing)
-//    @IBAction func addNewItem(_ sender: UIBarButtonItem) {
-//
-//        show()
-//        addNewItemView.onAdd = { item in
-//            self.listOfItems.append(item)
-//            self.tableView.reloadData()
-//        }
-//    }
     
 //
 //
     
      
 //    // MARK: Deleting item
-//    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-//        _ = listOfItems[indexPath.row]
-//        let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { (_, _, _) in self.listOfItems.remove(at: indexPath.row)
-//            tableView.deleteRows(at: [indexPath], with: .automatic)
-//        }
-//
-//        return UISwipeActionsConfiguration(actions: [deleteAction])
-//    }
-    
-//
-//extension ViewController: UITableViewDelegate, UITableViewDataSource {
-//
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "mainList", for: indexPath) as! CustomTableViewCell
-//        let item = listOfItems[indexPath.row]
-//        cell.newItemLabel.text = item.nameItem
-//        cell.daysLeftLabel.text = item.dateItem!.daysFromNowToString()
-//        return cell
-//    }
-//
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return listOfItems.count
-//    }
-//
+//    
 //}
 //
 //extension Date {
