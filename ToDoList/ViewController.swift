@@ -151,20 +151,12 @@ class ViewController: UIViewController {
     
 }
     
-//
-//
-    
-     
-//    // MARK: Deleting item
-//    
-//}
-//
-//extension Date {
-//    func daysFromNowToString() -> String? {
-//        let formatter = DateComponentsFormatter()
-//        formatter.unitsStyle = .full
-//        formatter.allowedUnits = [.month, . day, .hour]
-//        return formatter.string(from: Date(), to: self)
-//    }
-//}
+extension Date {
+    func daysFromNowToString() -> String? {
+        let formatter = DateComponentsFormatter()
+        formatter.unitsStyle = .full
+        formatter.allowedUnits = [.month, . day, .hour]
+        return formatter.string(from: Date(), to: self)
+    }
+}
 
