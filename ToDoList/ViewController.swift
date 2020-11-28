@@ -33,6 +33,7 @@ class ViewController: UIViewController {
         return button
     }()
     
+    let topView = UIView()
     let mainTableView = MainTableView()
     let newView = NewView()
     
@@ -57,8 +58,14 @@ class ViewController: UIViewController {
     
     private func setupConstraints() {
         
+        topView.snp.makeConstraints { (make) in
+            make.top.leading.trailing.equalToSuperview()
+            make.height.equalTo(100)
+        }
+        
         mainTableView.snp.makeConstraints { (make) in
-            make.leading.trailing.top.bottom.equalToSuperview()
+            make.leading.trailing.bottom.equalToSuperview()
+            make.top.equalTo(topView.snp.bottom)
         }
         
         container.snp.makeConstraints { (make) in
@@ -79,18 +86,25 @@ class ViewController: UIViewController {
         }
     }
     
+    override func viewWillLayoutSubviews() {
+        newView.roundCorners(corners: [.topLeft, .topRight], radius: 15)
+    }
+    
     private func setupViews() {
         
+        self.view.addSubview(topView)
         self.view.addSubview(mainTableView)
         self.view.addSubview(container)
         self.container.addSubview(addButton)
         self.container.addSubview(newView)
         
+        topView.backgroundColor = .yellow
+        
+        mainTableView.backgroundColor = UIColor(red: 0.247, green: 0.5686, blue: 0.2941, alpha: 1)
+        
         newView.isHidden = true
         newView.backgroundColor = .white
         newView.layer.shadowRadius = 100
-        
-        mainTableView.backgroundColor = UIColor(red: 0.247, green: 0.5686, blue: 0.2941, alpha: 1)
           
     }
     
