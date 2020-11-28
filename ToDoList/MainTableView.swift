@@ -49,25 +49,9 @@ class MainTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
             return UISwipeActionsConfiguration(actions: [deleteAction])
         }
     
-    
-    
-    
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return ConstantsOfValues.heightOfCell
     }
-    */
 
 }
 
-//extension MainTableView: UITableViewDelegate, UITableViewDataSource {
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return
-//    }
-//
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = dequeueReusableCell(withIdentifier: )
-//    }
-//}

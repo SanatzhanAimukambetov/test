@@ -29,7 +29,7 @@ class ViewController: UIViewController {
         let button = UIButton()
         button.setImage(UIImage(named: "addButton"), for: .normal)
         button.addTarget(self, action: #selector(showOrHide), for: .touchUpInside)
-        button.addTarget(self, action: #selector(addNewItem), for: .touchUpInside)
+//        button.addTarget(self, action: #selector(addNewItem), for: .touchUpInside)
         return button
     }()
     
@@ -43,24 +43,22 @@ class ViewController: UIViewController {
         setupViews()
         setupConstraints()
         keyboardActions()
-    }
-    
-    @objc private func addNewItem() {
+        
         newView.onAdd = { item in
             
             self.hideView()
             self.mainTableView.listOfItems.append(item)
-            self.mainTableView.reloadData()
-            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                self.mainTableView.reloadData()
+            }
         }
-        
     }
-    
+
     private func setupConstraints() {
         
         topView.snp.makeConstraints { (make) in
             make.top.leading.trailing.equalToSuperview()
-            make.height.equalTo(100)
+            make.height.equalTo(80)
         }
         
         mainTableView.snp.makeConstraints { (make) in
@@ -109,12 +107,12 @@ class ViewController: UIViewController {
     }
     
     @objc private func showOrHide() {
+        print(buttonIsShow)
         if buttonIsShow {
             showView()
         } else {
             hideView()
         }
-        buttonIsShow.toggle()
     }
     
     private func showView() {
@@ -124,6 +122,7 @@ class ViewController: UIViewController {
             self.container.transform = CGAffineTransform(translationX: 0, y: -self.newView.bounds.height)
             self.addButton.transform = CGAffineTransform(rotationAngle: CGFloat.pi/4)
         })
+        buttonIsShow = false
     }
     
     private func hideView() {
@@ -133,6 +132,7 @@ class ViewController: UIViewController {
         }, completion: { (completed) in
             if completed { self.newView.isHidden = true }
         })
+        buttonIsShow = true
     }
     
     // MARK: Keyboard actions
