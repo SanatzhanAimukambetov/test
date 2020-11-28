@@ -18,6 +18,7 @@ import SnapKit
 class ViewController: UIViewController {
     
     var buttonIsShow: Bool = true
+    var topConstraint: NSLayoutConstraint?
     
     let container: UIView = {
         let container = UIView()
@@ -29,7 +30,6 @@ class ViewController: UIViewController {
         let button = UIButton()
         button.setImage(UIImage(named: "addButton"), for: .normal)
         button.addTarget(self, action: #selector(showOrHide), for: .touchUpInside)
-//        button.addTarget(self, action: #selector(addNewItem), for: .touchUpInside)
         return button
     }()
     
@@ -42,15 +42,15 @@ class ViewController: UIViewController {
         
         setupViews()
         setupConstraints()
-        keyboardActions()
+        keyboardNotifications()
         
         newView.onAdd = { item in
-            
             self.hideView()
             self.mainTableView.listOfItems.append(item)
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            DispatchQueue.main.asyncAfter(deadline: .now()) {
                 self.mainTableView.reloadData()
             }
+            self.dismissKeyboard()
         }
     }
 
@@ -67,9 +67,9 @@ class ViewController: UIViewController {
         }
         
         container.snp.makeConstraints { (make) in
-            make.leading.trailing.equalToSuperview()
-            make.top.equalTo(view.snp.bottom).inset(110)
-        }
+            make.leading.trailing.equalToSuperview()}
+        topConstraint = NSLayoutConstraint(item: container, attribute: .top, relatedBy: .equal, toItem: view, attribute: .bottom, multiplier: 1, constant: -110)
+        view.addConstraint(topConstraint!)
         
         addButton.snp.makeConstraints { (make) in
             make.height.width.equalTo(80)
@@ -106,6 +106,7 @@ class ViewController: UIViewController {
           
     }
     
+    // MARK: Show and hide newView
     @objc private func showOrHide() {
         print(buttonIsShow)
         if buttonIsShow {
@@ -136,41 +137,36 @@ class ViewController: UIViewController {
     }
     
     // MARK: Keyboard actions
-    @objc func keyboardWillShow(notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-            if self.container.frame.origin.y == view.bounds.height - container.bounds.height {
-                self.container.frame.origin.y -= keyboardSize.height
-            }
-        }
-    }
-    
-    @objc func keyboardWillHide(notification: NSNotification) {
-        if self.container.frame.origin.y != view.bounds.height - container.bounds.height {
-            self.container.frame.origin.y = view.bounds.height - container.bounds.height
-            }
-        }
-    
-    private func keyboardActions() {
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
-//
+    private func keyboardNotifications() {
+        NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardNotification), name: UIResponder.keyboardWillShowNotification, object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardNotification), name: UIResponder.keyboardWillHideNotification, object: nil)
+        
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
 
         view.addGestureRecognizer(tap)
     }
+    @objc private func handleKeyboardNotification(notification: NSNotification) {
+        
+        if let userInfo = notification.userInfo {
+            
+            let keyboardSize = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue
+            
+            let isKeyboardShowing = notification.name == UIResponder.keyboardWillShowNotification
+                
+            topConstraint?.constant = isKeyboardShowing ? -keyboardSize!.height - 90 : -110
+            
+            UIView.animate(withDuration: 0, delay: 0, options: .curveEaseOut, animations: {
+                self.view.layoutIfNeeded()
+            }, completion: { (completed) in
+
+            })
+
+        }
+    }
     
     @objc func dismissKeyboard() {
-           view.endEditing(true)
-       }
-    
-}
-    
-extension Date {
-    func daysFromNowToString() -> String? {
-        let formatter = DateComponentsFormatter()
-        formatter.unitsStyle = .full
-        formatter.allowedUnits = [.month, . day, .hour]
-        return formatter.string(from: Date(), to: self)
-    }
+            view.endEditing(true)
+        }
 }
 
