@@ -63,7 +63,7 @@ class ViewController: UIViewController {
         
         mainTableView.snp.makeConstraints { (make) in
             make.leading.trailing.bottom.equalToSuperview()
-            make.top.equalTo(topView.snp.bottom)
+            make.top.equalTo(topView.snp.bottom).offset(5)
         }
         
         container.snp.makeConstraints { (make) in
@@ -96,9 +96,9 @@ class ViewController: UIViewController {
         self.container.addSubview(addButton)
         self.container.addSubview(newView)
         
+        self.view.backgroundColor = UIColor(red: 0.247, green: 0.5686, blue: 0.2941, alpha: 1)
         topView.backgroundColor = .yellow
-        
-        mainTableView.backgroundColor = UIColor(red: 0.247, green: 0.5686, blue: 0.2941, alpha: 1)
+        mainTableView.backgroundColor = .clear
         
         newView.isHidden = true
         newView.backgroundColor = .white
@@ -138,15 +138,15 @@ class ViewController: UIViewController {
     // MARK: Keyboard actions
     @objc func keyboardWillShow(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-            if self.view.frame.origin.y == 0 {
-                self.view.frame.origin.y -= keyboardSize.height
+            if self.container.frame.origin.y == view.bounds.height - container.bounds.height {
+                self.container.frame.origin.y -= keyboardSize.height
             }
         }
     }
     
     @objc func keyboardWillHide(notification: NSNotification) {
-            if self.view.frame.origin.y != 0 {
-                self.view.frame.origin.y = 0
+        if self.container.frame.origin.y != view.bounds.height - container.bounds.height {
+            self.container.frame.origin.y = view.bounds.height - container.bounds.height
             }
         }
     

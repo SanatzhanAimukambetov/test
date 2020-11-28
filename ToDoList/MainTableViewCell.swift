@@ -47,16 +47,16 @@ class MainTableViewCell: UITableViewCell {
         cellView.addSubview(itemImage)
         cellView.addSubview(itemLabel)
         
-        backgroundColor = UIColor(red: 0.247, green: 0.5686, blue: 0.2941, alpha: 1)
+        backgroundColor = .clear
     }
     
     private func setupConstraints() {
         
-        let heightOfImage = ConstantsOfValues.heightOfCell - 2.5*2 - 20
+        let heightOfImage = ConstantsOfValues.heightOfCell - 5*2 - 20
         
         cellView.snp.makeConstraints { (make) in
             make.leading.trailing.equalToSuperview().inset(10)
-            make.top.bottom.equalToSuperview().inset(2.5)
+            make.top.bottom.equalToSuperview().inset(5)
         }
         
         itemImage.snp.makeConstraints { (make) in
