@@ -37,7 +37,11 @@ class ViewController: UIViewController {
     let mainTableView = MainTableView()
     let newView = NewView()
     let hiddenView = UIView()
-    let blurView = UIView()
+    var blurView: UIView = {
+        let blurEffect = UIBlurEffect(style: UIBlurEffect.Style.dark)
+        let blurView = UIVisualEffectView(effect: blurEffect)
+        return blurView
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -93,6 +97,8 @@ class ViewController: UIViewController {
         blurView.snp.makeConstraints { (make) in
             make.edges.equalToSuperview()
         }
+        
+        
     }
     
     override func viewWillLayoutSubviews() {
@@ -118,7 +124,7 @@ class ViewController: UIViewController {
         blurView.isHidden = true
         newView.backgroundColor = .white
         newView.layer.shadowRadius = 100
-          
+        
     }
     
     // MARK: Show and hide newView
