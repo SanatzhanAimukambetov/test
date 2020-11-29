@@ -36,7 +36,7 @@ class NewView: UIView {
         addButton.setTitle("Добавить", for: .normal)
         addButton.setTitleColor(.white, for: .normal)
         addButton.titleLabel?.font = UIFont(name: "AppleSDGothicNeo-Bold", size: 23)
-        addButton.backgroundColor = UIColor(red: 0.247, green: 0.5686, blue: 0.2941, alpha: 1)
+        addButton.backgroundColor = ConstantsOfValues.colorOfButton
         addButton.layer.shadowColor = UIColor.black.cgColor
         addButton.layer.shadowOpacity = 0.1
         addButton.layer.shadowRadius = 1

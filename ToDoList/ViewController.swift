@@ -22,7 +22,7 @@ class ViewController: UIViewController {
     
     let container: UIView = {
         let container = UIView()
-        container.backgroundColor = UIColor(white: 0, alpha: 0)
+        container.backgroundColor = .clear
         return container
     }()
     
@@ -52,13 +52,14 @@ class ViewController: UIViewController {
             }
             self.dismissKeyboard()
         }
+        mainTableView.separatorColor = .clear
     }
 
     private func setupConstraints() {
         
         topView.snp.makeConstraints { (make) in
             make.top.leading.trailing.equalToSuperview()
-            make.height.equalTo(80)
+            make.height.equalTo(50)
         }
         
         mainTableView.snp.makeConstraints { (make) in
@@ -96,8 +97,8 @@ class ViewController: UIViewController {
         self.container.addSubview(addButton)
         self.container.addSubview(newView)
         
-        self.view.backgroundColor = UIColor(red: 0.247, green: 0.5686, blue: 0.2941, alpha: 1)
-        topView.backgroundColor = .yellow
+        self.view.backgroundColor = ConstantsOfValues.colorOfBackground
+        topView.backgroundColor = ConstantsOfValues.colorOfButton
         mainTableView.backgroundColor = .clear
         
         newView.isHidden = true
@@ -108,7 +109,6 @@ class ViewController: UIViewController {
     
     // MARK: Show and hide newView
     @objc private func showOrHide() {
-        print(buttonIsShow)
         if buttonIsShow {
             showView()
         } else {
