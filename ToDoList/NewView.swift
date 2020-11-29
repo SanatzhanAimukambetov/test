@@ -19,6 +19,9 @@ class NewView: UIView {
         return bottomLine
     }()
     
+    var imageOfIcon: UIImage?
+    var cells = IconModel.fetchIcons()
+    
     let textField: UITextField = {
         let textField = UITextField()
         textField.backgroundColor = .white
@@ -50,7 +53,12 @@ class NewView: UIView {
         super.init(frame: frame)
         setupViews()
         setupConstraints()
+        
         galleryCollectionView.set(cells: IconModel.fetchIcons())
+        galleryCollectionView.imageAtIndexPath = { [self] item in
+            imageOfIcon = cells[item.row].image
+            print(item.row)
+        }
     }
     
     required init?(coder: NSCoder) {
@@ -61,7 +69,7 @@ class NewView: UIView {
     
     @objc private func add() {
         
-        let item = Item(nameItem: textField.text, imageItem: #imageLiteral(resourceName: "icon4"))
+        let item = Item(nameItem: textField.text, imageItem: imageOfIcon ?? #imageLiteral(resourceName: "addButton2"))
         onAdd?(item)
     }
     

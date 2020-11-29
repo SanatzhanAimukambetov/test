@@ -36,6 +36,8 @@ class ViewController: UIViewController {
     let topView = UIView()
     let mainTableView = MainTableView()
     let newView = NewView()
+    let hiddenView = UIView()
+    let blurView = UIView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -83,6 +85,14 @@ class ViewController: UIViewController {
             make.bottom.equalToSuperview()
             make.top.equalTo(addButton.snp.bottom).offset(30)
         }
+        
+        hiddenView.snp.makeConstraints { (make) in
+            make.edges.equalToSuperview()
+        }
+        
+        blurView.snp.makeConstraints { (make) in
+            make.edges.equalToSuperview()
+        }
     }
     
     override func viewWillLayoutSubviews() {
@@ -93,6 +103,8 @@ class ViewController: UIViewController {
         
         self.view.addSubview(topView)
         self.view.addSubview(mainTableView)
+        self.view.addSubview(hiddenView)
+        self.view.addSubview(blurView)
         self.view.addSubview(container)
         self.container.addSubview(addButton)
         self.container.addSubview(newView)
@@ -102,6 +114,8 @@ class ViewController: UIViewController {
         mainTableView.backgroundColor = .clear
         
         newView.isHidden = true
+        hiddenView.isHidden = true
+        blurView.isHidden = true
         newView.backgroundColor = .white
         newView.layer.shadowRadius = 100
           
@@ -124,6 +138,7 @@ class ViewController: UIViewController {
             self.addButton.transform = CGAffineTransform(rotationAngle: CGFloat.pi/4)
         })
         buttonIsShow = false
+        blurView.isHidden = false
     }
     
     private func hideView() {
@@ -134,6 +149,8 @@ class ViewController: UIViewController {
             if completed { self.newView.isHidden = true }
         })
         buttonIsShow = true
+        newView.textField.text = ""
+        blurView.isHidden = true
     }
     
     // MARK: Keyboard actions
@@ -144,7 +161,7 @@ class ViewController: UIViewController {
         
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
 
-        view.addGestureRecognizer(tap)
+        hiddenView.addGestureRecognizer(tap)
     }
     @objc private func handleKeyboardNotification(notification: NSNotification) {
         
@@ -154,7 +171,13 @@ class ViewController: UIViewController {
             
             let isKeyboardShowing = notification.name == UIResponder.keyboardWillShowNotification
                 
-            topConstraint?.constant = isKeyboardShowing ? -keyboardSize!.height - 90 : -110
+            if isKeyboardShowing {
+                topConstraint?.constant = -keyboardSize!.height - 90
+                hiddenView.isHidden = false
+            } else {
+                topConstraint?.constant = -110
+                hiddenView.isHidden = true
+            }
             
             UIView.animate(withDuration: 0, delay: 0, options: .curveEaseOut, animations: {
                 self.view.layoutIfNeeded()

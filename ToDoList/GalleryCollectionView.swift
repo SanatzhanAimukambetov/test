@@ -8,8 +8,10 @@
 import UIKit
 
 class GalleryCollectionView: UICollectionView, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    var imageAtIndexPath: ((IndexPath)->())?
     
     var cells = [IconModel]()
+    var selectedIndex = IndexPath()
     
     init() {
         let layout = UICollectionViewFlowLayout()
@@ -37,10 +39,27 @@ class GalleryCollectionView: UICollectionView, UICollectionViewDelegate, UIColle
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = dequeueReusableCell(withReuseIdentifier: GalleryCollectionViewCell.reuseId, for: indexPath) as! GalleryCollectionViewCell
         cell.mainImageView.image = cells[indexPath.row].image
+        
+        if indexPath == selectedIndex {
+            cell.layer.borderWidth = 2
+            cell.layer.borderColor = ConstantsOfValues.colorOfButton.cgColor
+            UIView.animate(withDuration: 0.5) {
+                cell.transform = CGAffineTransform(scaleX: 1.05, y: 1.05)
+            }
+        } else {
+            cell.layer.borderColor = ConstantsOfValues.colorOfButton.cgColor
+            cell.layer.borderWidth = 0
+            UIView.animate(withDuration: 0.5) {
+                cell.transform = CGAffineTransform.identity
+            }
+        }
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        selectedIndex = indexPath
+        imageAtIndexPath!(selectedIndex)
+        collectionView.reloadData()
         
     }
     

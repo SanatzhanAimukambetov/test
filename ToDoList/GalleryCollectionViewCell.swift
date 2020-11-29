@@ -33,3 +33,19 @@ class GalleryCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 }
+
+extension GalleryCollectionViewCell {
+    
+    override var isSelected: Bool {
+        didSet {
+            if self.isSelected
+            {
+                self.transform = CGAffineTransform(scaleX: 1.1, y: 1.1)
+            }
+            else
+            {
+                self.transform = CGAffineTransform.identity
+            }
+        }
+    }
+}

@@ -26,7 +26,7 @@ class MainTableViewCell: UITableViewCell {
     
     let itemLabel: UILabel = {
         let itemLabel = UILabel()
-        itemLabel.text = "Another One"
+        itemLabel.text = ""
         return itemLabel
     }()
     
@@ -72,4 +72,5 @@ class MainTableViewCell: UITableViewCell {
             make.trailing.equalToSuperview().inset(15)
         }
     }
+    
 }
