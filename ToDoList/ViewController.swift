@@ -5,11 +5,7 @@
 //  Created by Chemdev on 06.11.2020.
 //
 // realm
-// carousel
-// design
-// radiusCorner
-// opacity of view
-// sorting by names and deadlines
+// carouselasd
 // limitation = 10 cells, limitation for textfield
 
 import UIKit
@@ -28,7 +24,7 @@ class ViewController: UIViewController {
     
     let addButton: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(named: "addButton"), for: .normal)
+        button.setImage(UIImage(named: "addButton4"), for: .normal)
         button.addTarget(self, action: #selector(showOrHide), for: .touchUpInside)
         return button
     }()
@@ -97,8 +93,6 @@ class ViewController: UIViewController {
         blurView.snp.makeConstraints { (make) in
             make.edges.equalToSuperview()
         }
-        
-        
     }
     
     override func viewWillLayoutSubviews() {
@@ -109,8 +103,8 @@ class ViewController: UIViewController {
         
         self.view.addSubview(topView)
         self.view.addSubview(mainTableView)
-        self.view.addSubview(hiddenView)
         self.view.addSubview(blurView)
+        self.view.addSubview(hiddenView)
         self.view.addSubview(container)
         self.container.addSubview(addButton)
         self.container.addSubview(newView)
