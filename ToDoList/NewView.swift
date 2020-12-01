@@ -20,6 +20,7 @@ class NewView: UIView {
     }()
     
     var imageOfIcon: UIImage?
+    var indexOfIcon: Int = -1
     var cells = IconModel.fetchIcons()
     
     let textField: UITextField = {
@@ -55,9 +56,10 @@ class NewView: UIView {
         setupConstraints()
         
         galleryCollectionView.set(cells: IconModel.fetchIcons())
-        galleryCollectionView.imageAtIndexPath = { [self] item in
-            imageOfIcon = cells[item.row].image
-            print(item.row)
+        galleryCollectionView.imageAtIndexPath = { [weak self] item in
+            guard let self = self else { return }
+            self.indexOfIcon = item.row % 5
+            self.imageOfIcon = self.cells[self.indexOfIcon].image
         }
     }
     

@@ -33,12 +33,12 @@ class GalleryCollectionView: UICollectionView, UICollectionViewDelegate, UIColle
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return cells.count
+        return 1000000
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = dequeueReusableCell(withReuseIdentifier: GalleryCollectionViewCell.reuseId, for: indexPath) as! GalleryCollectionViewCell
-        cell.mainImageView.image = cells[indexPath.row].image
+        cell.mainImageView.image = cells[indexPath.row % cells.count].image
         
         if indexPath == selectedIndex {
             cell.layer.borderWidth = 2
