@@ -71,8 +71,9 @@ class NewView: UIView {
     
     @objc private func add() {
         
-        let item = Item(nameItem: textField.text, imageItem: imageOfIcon ?? #imageLiteral(resourceName: "addButton2"))
-        onAdd?(item)
+        let imageData = imageOfIcon?.pngData()
+        let item = Item(nameItem: textField.text!, imageItem: imageData)
+        onAdd!(item)
     }
     
     private func setupViews() {

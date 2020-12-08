@@ -6,14 +6,16 @@
 //
 
 import UIKit
+import RealmSwift
 
 class MainTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
     
-    var listOfItems = [Item]()
+    var items: Results<Item>!
     
     override init(frame: CGRect, style: UITableView.Style) {
         super.init(frame: frame, style: style)
         
+        items = realm.objects(Item.self)
         dataSource = self
         delegate = self
         
@@ -26,29 +28,31 @@ class MainTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return listOfItems.count
+        return items.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: MainTableViewCell.reuseId, for: indexPath) as! MainTableViewCell
         
-        let item = listOfItems[indexPath.row]
+        let item = items[indexPath.row]
         
         cell.itemLabel.text = item.nameItem
-        cell.itemImage.image = item.imageItem
+        cell.itemImage.image = UIImage(data: item.imageItem!)
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-            _ = listOfItems[indexPath.row]
-            let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { (_, _, _) in self.listOfItems.remove(at: indexPath.row)
-                tableView.deleteRows(at: [indexPath], with: .automatic)
-            }
-    
-            return UISwipeActionsConfiguration(actions: [deleteAction])
+        let item = items[indexPath.row]
+        let deleteAction = UIContextualAction(style: .destructive, title: "Удалить") { (_, _, _) in
+            tableView.deleteRows(at: [indexPath], with: .automatic)
         }
-    
+        deleteAction.backgroundColor = ConstantsOfValues.colorOfButton
+        StorageManager.deleteObject(item)
+        let swipeConfig = UISwipeActionsConfiguration(actions: [deleteAction])
+        return swipeConfig
+    }
+
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return ConstantsOfValues.heightOfCell
     }

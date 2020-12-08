@@ -11,6 +11,11 @@ import RealmSwift
 class Item: Object {
     
     @objc dynamic var nameItem = ""
-    @objc dynamic var imageItem: UIImage?
+    @objc dynamic var imageItem: Data?
     
+    convenience init(nameItem: String, imageItem: Data?) {
+        self.init()
+        self.nameItem = nameItem
+        self.imageItem = imageItem
+    }
 }

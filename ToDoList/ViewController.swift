@@ -43,16 +43,15 @@ class ViewController: UIViewController {
         
         setupViews()
         setupConstraints()
-        keyboardNotifications()
-        
         newView.onAdd = { item in
             self.hideView()
-            self.mainTableView.listOfItems.append(item)
-            DispatchQueue.main.asyncAfter(deadline: .now()) {
+            StorageManager.saveObject(item)
+            DispatchQueue.main.async {
                 self.mainTableView.reloadData()
             }
             self.dismissKeyboard()
         }
+        keyboardNotifications()
         mainTableView.separatorColor = .clear
     }
 
