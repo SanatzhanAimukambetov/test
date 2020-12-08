@@ -136,7 +136,8 @@ class ViewController: UIViewController {
             self.addButton.transform = CGAffineTransform(rotationAngle: CGFloat.pi/4)
         })
         buttonIsShow = false
-        blurView.isHidden = false
+        blurView.fadeIn()
+        
     }
     
     private func hideView() {
@@ -147,8 +148,9 @@ class ViewController: UIViewController {
             if completed { self.newView.isHidden = true }
         })
         buttonIsShow = true
+        blurView.fadeOut()
         newView.textField.text = ""
-        blurView.isHidden = true
+        
     }
     
     // MARK: Keyboard actions
@@ -189,5 +191,27 @@ class ViewController: UIViewController {
     @objc func dismissKeyboard() {
             view.endEditing(true)
         }
+}
+
+extension UIView {
+    
+    func fadeIn(_ duration: TimeInterval? = 0.5, onCompletion: (() -> Void)? = nil) {
+        self.alpha = 0
+        self.isHidden = false
+        UIView.animate(withDuration: duration!,
+                       animations: { self.alpha = 1},
+                       completion: { (value: Bool) in
+                        if let complete = onCompletion { complete() }
+        })
+    }
+    
+    func fadeOut(_ duration: TimeInterval? = 0.3, onCompletion: (() -> Void)? = nil) {
+        UIView.animate(withDuration: duration!,
+                       animations: { self.alpha = 0},
+                       completion: { (value: Bool) in
+                        self.isHidden = true
+                        if let complete = onCompletion { complete() }
+        })
+    }
 }
 
