@@ -6,8 +6,11 @@
 //
 
 import UIKit
+import RealmSwift
 
-struct Item {
-    var nameItem: String?
-    var imageItem: UIImage
+class Item: Object {
+    
+    @objc dynamic var nameItem = ""
+    @objc dynamic var imageItem: UIImage?
+    
 }
