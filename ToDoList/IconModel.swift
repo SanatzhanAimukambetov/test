@@ -16,7 +16,7 @@ struct IconModel {
         let thirdItem = IconModel(image: UIImage(named: "icon3")!)
         let four = IconModel(image: UIImage(named: "icon4")!)
         let five = IconModel(image: UIImage(named: "icon5")!)
-//        let fourthItem = IconModel(image: "icon4")
+        let fourthItem = IconModel(image: "icon6")
 //        let five = IconModel(image: "icon5")
 //        let six = IconModel(image: "icon6")
 //        let seven = IconModel(image: "icon7")

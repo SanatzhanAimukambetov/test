@@ -4,8 +4,6 @@
 //
 //  Created by Chemdev on 06.11.2020.
 //
-// realm
-// limitation = 10 cells, limitation for textfield
 
 import UIKit
 import SnapKit
