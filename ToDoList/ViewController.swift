@@ -21,7 +21,7 @@ class ViewController: UIViewController {
     
     let addButton: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(named: "addButton4"), for: .normal)
+        button.setImage(UIImage(named: "addButton"), for: .normal)
         button.addTarget(self, action: #selector(showOrHide), for: .touchUpInside)
         return button
     }()
@@ -161,6 +161,7 @@ class ViewController: UIViewController {
 
         hiddenView.addGestureRecognizer(tap)
     }
+    
     @objc private func handleKeyboardNotification(notification: NSNotification) {
         
         if let userInfo = notification.userInfo {
@@ -187,6 +188,7 @@ class ViewController: UIViewController {
     }
     
     @objc func dismissKeyboard() {
+        
             view.endEditing(true)
         }
 }
