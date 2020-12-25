@@ -8,6 +8,7 @@
 import UIKit
 
 class GalleryCollectionView: UICollectionView, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    
     var imageAtIndexPath: ((IndexPath)->())?
     
     var cells = [IconModel]()
